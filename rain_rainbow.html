@@ -263,6 +263,19 @@
         transition-delay: 0.25s;
     }
 
+    @keyframes animate {
+        0% {
+            transform: translateY(0) scale(1);
+        }
+
+        70% {
+            transform: translateY(320px) scale(1);
+        }
+
+        100% {
+            transform: translateY(320px) scale(0);
+        }
+    }
 
     @keyframes switch {
         0% {
