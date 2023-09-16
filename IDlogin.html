@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDlogin</title>
+</head>
+
+<body>
+
+    <!-- 登入部分 -->
+    <div class="wrapper">
+        <div class="input-data">
+            <!-- 给一个必填属性 -->
+            <input type="text" required>
+            <div class="underline"></div>
+            <label for="">YOUR ID</label>
+        </div>
+
+    </div>
+
+    <!-- 背后动画 -->
+    <!-- 前后左右上下 六个面 -->
+    <div class="star">
+        <div class="box">
+            <div class="out-div out-front"></div>
+            <div class="out-div out-back"></div>
+            <div class="out-div out-left"></div>
+            <div class="out-div out-right"></div>
+            <div class="out-div out-top"></div>
+            <div class="out-div out-bottom"></div>
+        </div>
+    </div>
+</body>
+
+
+</html>
+<style>
+    /* 我们先写登入的 */
+    * {
+        padding: 0;
+        margin: 0;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        /* 渐变背景 */
+        background: linear-gradient(200deg, rgba(13, 16, 22, 0.8), rgba(16, 44, 152, 1));
+    }
+
+    .wrapper {
+        width: 500px;
+        background-color: #fff;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .wrapper .input-data {
+        position: relative;
+        width: 100%;
+        height: 40px;
+    }
+
+    .wrapper .input-data input {
+        width: 80%;
+        height: 100%;
+        border: none;
+        font-size: 17px;
+        border-bottom: 2px solid #c0c0c0;
+    }
+
+
+    .wrapper .input-data input:focus~label,
+    /* 验证表单是否有效 */
+    .wrapper .input-data input:valid~label {
+
+        transform: translateY(-25px);
+        font-size: 15px;
+        color: #2c6fdb;
+    }
+
+    .wrapper .input-data label {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        color: #808080;
+        /* 使点击label可以穿透输入框 */
+        pointer-events: none;
+
+        transition: all 0.3s ease;
+    }
+
+    .wrapper .input-data .underline {
+        position: absolute;
+        bottom: 0;
+        height: 2px;
+        width: 90%;
+        background-color: #2c6fdb;
+        transform: scaleX(0);
+        transition: all 0.3s ease;
+    }
+
+    .wrapper .input-data input:focus~.underline,
+    /* 验证表单是否有效 */
+    .wrapper .input-data input:valid~.underline {
+
+        transform: scaleX(1);
+    }
+
+
+
+    /* --------------- */
+    .star {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -5;
+    }
+
+    .box {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        /* 开启3d */
+        transform-style: preserve-3d;
+        animation: rotateAnimate 10s linear infinite;
+
+
+
+    }
+
+    /* 统一样式 */
+    .out-div {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        transition: transform 1s ease-in;
+        border: 1px solid #fff;
+    }
+
+    /* 六个方向的位移 */
+    .out-front {
+        transform: translateZ(100px);
+        animation: rotateq 5s linear infinite;
+    }
+
+    .out-back {
+        transform: translateZ(-100px)rotateY(180deg);
+        animation: rotateh 5s linear infinite;
+    }
+
+    .out-left {
+        transform: translateX(-100px)rotateY(-90deg);
+        animation: rotatez 5s linear infinite;
+    }
+
+    .out-right {
+        transform: translateX(100px)rotateY(90deg);
+        animation: rotatey 5s linear infinite;
+    }
+
+    .out-top {
+        transform: translateY(-100px)rotateX(90deg);
+        animation: rotates 5s linear infinite;
+    }
+
+    .out-bottom {
+        transform: translateY(100px)rotateX(-90deg);
+        animation: rotatex 5s linear infinite;
+    }
+
+
+    @keyframes rotateq {
+        50% {
+            transform: translateZ(250px);
+        }
+    }
+
+    @keyframes rotateh {
+        50% {
+            transform: translateZ(-250px)rotateY(180deg);
+        }
+    }
+
+    @keyframes rotatez {
+        50% {
+            transform: translateX(-250px)rotateY(-90deg);
+        }
+    }
+
+    @keyframes rotatey {
+        50% {
+            transform: translateX(250px)rotateY(90deg);
+        }
+    }
+
+    @keyframes rotates {
+        50% {
+            transform: translateY(-250px)rotateX(90deg);
+        }
+    }
+
+    @keyframes rotatex {
+        50% {
+            transform: translateY(250px)rotateX(-90deg);
+        }
+    }
+
+    @keyframes rotateAnimate {
+        0% {
+            transform: rotateX(0deg)rotateY(0deg)rotateZ(0deg)
+        }
+
+        100% {
+            transform: rotateX(360deg)rotateY(360deg)rotateZ(360deg)
+        }
+    }
+
+    /* 自己做这种的时候 建议自己画个坐标轴 笑 */
+</style>
